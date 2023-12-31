@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+    app:
+        build: .
+        ports:
+            - '3000:3000'
+        depends_on:
+            - mysql
+            - redis
+        environment:
+            - NODE_ENV=production
+
+    mysql:
+        image: mysql:latest
+        environment:
+            MYSQL_ROOT_PASSWORD: K9Yym3H4qJrmKE7CBOCC
+            MYSQL_DATABASE: organization
+            MYSQL_USER: organization.backend
+            MYSQL_PASSWORD: XxUGG96OoyAaTRciaxzB
+        ports:
+            - '3306:3306'
+        volumes:
+            - mysql-data:/var/lib/mysql
+            - ./mysql/init:/docker-entrypoint-initdb.d
+
+    redis:
+        image: redis:latest
+        ports:
+            - '6379:6379'
+        volumes:
+            - redis-data:/data
+
+volumes:
+    mysql-data:
+    redis-data:

@@ -1,0 +1,12 @@
+CREATE TABLE IF NOT EXISTS `people` (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    job_title VARCHAR(255) NOT NULL,
+    group_id INT,
+    date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    date_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (group_id) REFERENCES people_groups(id) ON DELETE
+    SET
+        NULL
+);

@@ -1,0 +1,10 @@
+CREATE TABLE IF NOT EXISTS `people_groups` (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    parent_group_id INT,
+    date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    date_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (parent_group_id) REFERENCES people_groups(id) ON DELETE
+    SET
+        NULL
+);
